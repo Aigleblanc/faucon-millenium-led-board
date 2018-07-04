@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/home/aigleblanc/Arduino/libraries/Adafruit_NeoPixel",
+                "/home/aigleblanc/.arduino15/packages/arduino/hardware/avr/1.6.21/cores/arduino"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "/home/aigleblanc/Arduino/libraries/Adafruit_NeoPixel",
+                    "/home/aigleblanc/.arduino15/packages/arduino/hardware/avr/1.6.21/cores/arduino"
+                ]
+            },
+            "intelliSenseMode": "clang-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
