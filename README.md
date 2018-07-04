@@ -20,3 +20,9 @@ Ce code permet de gérer depuis une app android l'éclairage du Faucon Millenium
 
 Ce code est a l'etat de proof.
 
+## Le materiel utilisés
+
+- Arduino
+- Led NeoPixels
+- Pile 18xxx
+- ...

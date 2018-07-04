@@ -13,7 +13,6 @@ String color = "";
 uint32_t couleur = 0x000000;
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRBW + NEO_KHZ800);
-//Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 int delayval = 500;
 
@@ -61,6 +60,12 @@ void led_display() {
 }
 
 /*
+
+L'applicaton Android/Ios envoie la data sous la forme : 
+
+action:codecouleur
+action = [a-z1-9] 1 2 a
+codecouleur = 000(red) 000(green) 000(blue) 000(white) 000000000000
 
 Action :
 
