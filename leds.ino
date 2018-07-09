@@ -6,13 +6,13 @@
 #endif
 
 #define PIN            10
-#define NUMPIXELS      2
+#define NUMPIXELS      3
 
-String mode = "";
-String color = "";
-uint32_t couleur = 0x000000;
+#define PIN_MOTOR            11
+#define NUMPIXELS_MOTOR      2
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRBW + NEO_KHZ800);
+Adafruit_NeoPixel pixelsMotor = Adafruit_NeoPixel(NUMPIXELS_MOTOR, PIN_MOTOR, NEO_GRBW + NEO_KHZ800);
 
 int delayval = 500;
 
@@ -24,8 +24,11 @@ void setup() {
     if (F_CPU == 16000000) clock_prescale_set(clock_div_1);
     #endif
 
+    pixelsMotor.setBrightness(20);
+    pixelsMotor.begin();
+
     pixels.setBrightness(20);
-    pixels.begin(); // This initializes the NeoPixel library.
+    pixels.begin();
 
     led_display();
 }
@@ -53,8 +56,14 @@ void led_display() {
 
     pixels.setPixelColor(0, r_led, v_led, b_led, w_led);
     pixels.setPixelColor(1, r_led, v_led, b_led, w_led);
+    pixels.setPixelColor(2, r_led, v_led, b_led, w_led);
 
     pixels.show();
+
+    pixelsMotor.setPixelColor(0, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(1, r_led, v_led, b_led, w_led);
+
+    pixelsMotor.show();   
 
     delay(delayval);
 }
@@ -69,12 +78,13 @@ codecouleur = 000(red) 000(green) 000(blue) 000(white) 000000000000
 
 Action :
 
+0 - 
 1 - 
 2 - 
 3 - 
 4 - 
 
-9 - 
+9 - Modification des leds du second jeux de Leds ( Moteurs arriere )
 
 a - 
 b - 
@@ -94,7 +104,7 @@ void bt_reception() {
         // Definition des actions
         String action = inputString.substring(0,1);
 
-        if (action == "1")  {
+        if (action == "0")  {
 
             long r_led = strtol(inputString.substring(2,5).c_str(), NULL, 16);
             long v_led = strtol(inputString.substring(5,8).c_str(), NULL, 16);
@@ -102,6 +112,18 @@ void bt_reception() {
             long w_led = strtol(inputString.substring(11).c_str(), NULL, 16);
 
             pixels.setPixelColor(0, pixels.Color(r_led, v_led, b_led, w_led));
+           
+            pixels.show();
+        }
+
+        if (action == "1")  {
+
+            long r_led = strtol(inputString.substring(2,5).c_str(), NULL, 16);
+            long v_led = strtol(inputString.substring(5,8).c_str(), NULL, 16);
+            long b_led = strtol(inputString.substring(8,11).c_str(), NULL, 16);       
+            long w_led = strtol(inputString.substring(11).c_str(), NULL, 16);
+
+            pixels.setPixelColor(1, pixels.Color(r_led, v_led, b_led, w_led));
            
             pixels.show();
         }
@@ -125,6 +147,15 @@ void bt_reception() {
           
             pixels.show();
         }
+
+        if (action == "9")  {
+
+            pixelsMotor.setPixelColor(0, 0xff00f7);
+            pixelsMotor.setPixelColor(1, 0xff00f7);
+           
+            pixelsMotor.show();
+
+        }       
 
         if (action == "a")  {
           pixels.setBrightness(20); 
@@ -234,7 +265,7 @@ void fullWhite() {
 
 void fullColor() {
     for(uint16_t i=0; i<pixels.numPixels(); i++) {
-        pixels.setPixelColor(i, couleur);
+        pixels.setPixelColor(i, pixels.Color(255, 255, 255 ));
     }
     pixels.show();
 }
