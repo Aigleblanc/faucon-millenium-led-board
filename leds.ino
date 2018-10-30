@@ -96,7 +96,10 @@ Action :
 2 - Met en blanc toutes les leds du cockpite
 3 - Met en blanc toutes les leds des moteurs
 4 - 
-
+5 - 
+6 - Effet K2000 sur les moteurs
+7 - Effet K2000 sur les moteurs
+8 - Effet K2000 sur les moteurs
 9 - Effet K2000 sur les moteurs
 
 a - Luminosité 10%
@@ -167,9 +170,35 @@ void bt_reception() {
             fullWhiteMotors();
         }
 
-        // Effet K2000 sur les moteurs
+/*
+        knightRider(3, 32, 4, 0xFF1000); // Cycles, Speed, Width, RGB Color (original orange-red)
+        knightRider(3, 32, 3, 0xFF00FF); // Cycles, Speed, Width, RGB Color (purple)
+        knightRider(3, 32, 2, 0x0000FF); // Cycles, Speed, Width, RGB Color (blue)
+        knightRider(3, 32, 5, 0xFF0000); // Cycles, Speed, Width, RGB Color (red)
+        knightRider(3, 32, 6, 0x00FF00); // Cycles, Speed, Width, RGB Color (green)
+        knightRider(3, 32, 7, 0xFFFF00); // Cycles, Speed, Width, RGB Color (yellow)
+        knightRider(3, 32, 8, 0x00FFFF); // Cycles, Speed, Width, RGB Color (cyan)
+        knightRider(3, 32, 2, 0xFFFFFF); // Cycles, Speed, Width, RGB Color (white)
+*/
+
+        // Effet K2000 sur les moteurs green
+        if (action == "6")  {
+            knightRider(15, 15, 4, 0x00FF00);
+        }
+
+        // Effet K2000 sur les moteurs purple
+        if (action == "7")  {
+            knightRider(15, 15, 4, 0xFF00FF);
+        }
+
+        // Effet K2000 sur les moteurs bleu
+        if (action == "8")  {
+            knightRider(15, 15, 4, 0x0000FF);
+        }
+
+        // Effet K2000 sur les moteurs rouge
         if (action == "9")  {
-            knightRider(15, 32, 4, 0xFF1000);
+            knightRider(15, 15, 4, 0xFF1000);
         }
 
         // Luminosité 10%
@@ -188,6 +217,47 @@ void bt_reception() {
         if (action == "c")  {
           pixels.setBrightness(255);
           pixelsMotor.setBrightness(255);
+        }
+        // Led On
+        if (action == "d")  {
+            led_display();
+        }
+
+        // Led Off
+        if (action == "e")  {
+
+            String r = "0";
+            String v = "0";
+            String b = "0";
+            String w = "0";
+
+            long r_led = strtol(r.c_str(), NULL, 16);
+            long v_led = strtol(v.c_str(), NULL, 16);
+            long b_led = strtol(b.c_str(), NULL, 16);
+            long w_led = strtol(w.c_str(), NULL, 16);
+         
+            pixelsMotor.setPixelColor(0, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(1, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(2, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(3, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(4, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(5, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(6, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(7, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(8, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(9, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(10, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(11, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(12, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(13, r_led, v_led, b_led, w_led);
+
+            pixelsMotor.show();
+
+            pixels.setPixelColor(0, pixels.Color(r_led, v_led, b_led, w_led));
+            pixels.setPixelColor(1, pixels.Color(r_led, v_led, b_led, w_led));
+           
+            pixels.show();
+
         }
     }
 
@@ -254,7 +324,7 @@ void knightRider(uint16_t cycles, uint16_t speed, uint8_t width, uint32_t color)
 
 void clearStrip() {
     for( int i = 0; i<NUMPIXELS_MOTOR; i++){
-        pixelsMotor.setPixelColor(i, 0x000000); strip.show();
+        pixelsMotor.setPixelColor(i, 0x000000); pixelsMotor.show();
     }
 }
 
