@@ -183,22 +183,22 @@ void bt_reception() {
 
         // Effet K2000 sur les moteurs green
         if (action == "6")  {
-            knightRider(15, 15, 4, 0x00FF00);
+            knightRider(15, 60, 4, 0x00FF00);
         }
 
         // Effet K2000 sur les moteurs purple
         if (action == "7")  {
-            knightRider(15, 15, 4, 0xFF00FF);
+            knightRider(15, 60, 4, 0xFF00FF);
         }
 
         // Effet K2000 sur les moteurs bleu
         if (action == "8")  {
-            knightRider(15, 15, 4, 0x0000FF);
+            knightRider(15, 60, 4, 0x0000FF);
         }
 
         // Effet K2000 sur les moteurs rouge
         if (action == "9")  {
-            knightRider(15, 15, 4, 0xFF1000);
+            knightRider(15, 60, 4, 0xFF1000);
         }
 
         // Luminosité 10%
