@@ -38,3 +38,9 @@ il faut mettre NEO_GRBW + NEO_KHZ800 et utiliser des couleurs en RGBW... ( oué 
 - De quoi souder :)
 
 Le schémas de montage viendra plustard.
+
+## Application Android
+
+Vous pouvez utiliser cette aplication pour gérer depuis un telephone Android.
+
+https://github.com/Aigleblanc/faucon-millenium-led-board/blob/master/AppAndroid/faucon.apk
