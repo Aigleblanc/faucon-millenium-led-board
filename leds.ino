@@ -5,11 +5,11 @@
     #include <avr/power.h>
 #endif
 
-#define PIN            10
-#define NUMPIXELS      3
+#define PIN            11
+#define NUMPIXELS      2
 
-#define PIN_MOTOR            11
-#define NUMPIXELS_MOTOR      2
+#define PIN_MOTOR            10
+#define NUMPIXELS_MOTOR      14
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRBW + NEO_KHZ800);
 Adafruit_NeoPixel pixelsMotor = Adafruit_NeoPixel(NUMPIXELS_MOTOR, PIN_MOTOR, NEO_GRBW + NEO_KHZ800);
@@ -24,10 +24,11 @@ void setup() {
     if (F_CPU == 16000000) clock_prescale_set(clock_div_1);
     #endif
 
-    pixelsMotor.setBrightness(20);
+    // 0 a 255
+    pixelsMotor.setBrightness(200);
     pixelsMotor.begin();
 
-    pixels.setBrightness(20);
+    pixels.setBrightness(200);
     pixels.begin();
 
     led_display();
@@ -44,10 +45,11 @@ void loop() {
 */
 void led_display() {
 
+    // Bleu par defaut
     String r = "0";
     String v = "0";
     String b = "255";
-    String w = "127";
+    String w = "0";
 
     long r_led = strtol(r.c_str(), NULL, 16);
     long v_led = strtol(v.c_str(), NULL, 16);
@@ -56,12 +58,23 @@ void led_display() {
 
     pixels.setPixelColor(0, r_led, v_led, b_led, w_led);
     pixels.setPixelColor(1, r_led, v_led, b_led, w_led);
-    pixels.setPixelColor(2, r_led, v_led, b_led, w_led);
 
     pixels.show();
 
     pixelsMotor.setPixelColor(0, r_led, v_led, b_led, w_led);
     pixelsMotor.setPixelColor(1, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(2, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(3, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(4, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(5, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(6, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(7, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(8, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(9, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(10, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(11, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(12, r_led, v_led, b_led, w_led);
+    pixelsMotor.setPixelColor(13, r_led, v_led, b_led, w_led);
 
     pixelsMotor.show();   
 
@@ -78,17 +91,17 @@ codecouleur = 000(red) 000(green) 000(blue) 000(white) 000000000000
 
 Action :
 
-0 - 
-1 - 
-2 - 
-3 - 
+0 - Change la couleur du cockpit par celle demandé sur les deux leds
+1 - Change la couleur de toutes les leds des moteurs
+2 - Met en blanc toutes les leds du cockpite
+3 - Met en blanc toutes les leds des moteurs
 4 - 
 
-9 - Modification des leds du second jeux de Leds ( Moteurs arriere )
+9 - Effet K2000 sur les moteurs
 
-a - 
-b - 
-c - 
+a - Luminosité 10%
+b - Luminosité 50%
+c - Luminosité 100%
 d - 
 
 z - 
@@ -104,6 +117,7 @@ void bt_reception() {
         // Definition des actions
         String action = inputString.substring(0,1);
 
+        // Change la couleur du cockpit par celle demandé sur les deux leds
         if (action == "0")  {
 
             long r_led = strtol(inputString.substring(2,5).c_str(), NULL, 16);
@@ -112,145 +126,69 @@ void bt_reception() {
             long w_led = strtol(inputString.substring(11).c_str(), NULL, 16);
 
             pixels.setPixelColor(0, pixels.Color(r_led, v_led, b_led, w_led));
+            pixels.setPixelColor(1, pixels.Color(r_led, v_led, b_led, w_led));
            
             pixels.show();
         }
 
+        // Change la couleur de toutes les leds des moteurs
         if (action == "1")  {
 
             long r_led = strtol(inputString.substring(2,5).c_str(), NULL, 16);
             long v_led = strtol(inputString.substring(5,8).c_str(), NULL, 16);
             long b_led = strtol(inputString.substring(8,11).c_str(), NULL, 16);       
             long w_led = strtol(inputString.substring(11).c_str(), NULL, 16);
+         
+            pixelsMotor.setPixelColor(0, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(1, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(2, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(3, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(4, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(5, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(6, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(7, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(8, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(9, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(10, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(11, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(12, r_led, v_led, b_led, w_led);
+            pixelsMotor.setPixelColor(13, r_led, v_led, b_led, w_led);
 
-            pixels.setPixelColor(1, pixels.Color(r_led, v_led, b_led, w_led));
-           
-            pixels.show();
-        }
-
-         if (action == "2")  {
-
-            long r_led = strtol(inputString.substring(2,5).c_str(), NULL, 16);
-            long v_led = strtol(inputString.substring(5,8).c_str(), NULL, 16);
-            long b_led = strtol(inputString.substring(8,11).c_str(), NULL, 16);       
-            long w_led = strtol(inputString.substring(11).c_str(), NULL, 16);
-
-            pixels.setPixelColor(1, r_led, v_led, b_led, w_led);
-           
-            pixels.show();
-        }    
-
-        if (action == "3")  {
-
-            pixels.setPixelColor(0, 0xff00f7);
-            pixels.setPixelColor(1, 0xff00f7);
-          
-            pixels.show();
-        }
-
-        if (action == "9")  {
-
-            pixelsMotor.setPixelColor(0, 0xff00f7);
-            pixelsMotor.setPixelColor(1, 0xff00f7);
-           
             pixelsMotor.show();
-
-        }       
-
-        if (action == "a")  {
-          pixels.setBrightness(20); 
         }
 
+        // Met en blanc toutes les leds du cockpite
+        if (action == "2")  {
+            fullWhite();
+        } 
+
+        // Met en blanc toutes les leds des moteurs
+        if (action == "3")  {
+            fullWhiteMotors();
+        }
+
+        // Effet K2000 sur les moteurs
+        if (action == "9")  {
+            knightRider(15, 32, 4, 0xFF1000);
+        }
+
+        // Luminosité 10%
+        if (action == "a")  {
+          pixels.setBrightness(25);
+          pixelsMotor.setBrightness(25);
+        }
+
+        // Luminosité 50%
         if (action == "b")  {
-          pixels.setBrightness(100); 
+          pixels.setBrightness(125);
+          pixelsMotor.setBrightness(125);
         }
         
+        // Luminosité 100%
         if (action == "c")  {
-          pixels.setBrightness(200); 
+          pixels.setBrightness(255);
+          pixelsMotor.setBrightness(255);
         }
-
-        /*if (inputString == "rose")  {
-            pixels.setPixelColor(0, 0xff00f7);
-            pixels.setPixelColor(1, 0xff00f7);
-
-            pixels.setBrightness(20);
-            
-            pixels.show();
-
-            Serial.println("Changement de Couleur : ");
-            Serial.println(inputString);
-        } else if(inputString == "rose2") {
-
-            pixels.setPixelColor(0, 0xff00f7);
-            pixels.setPixelColor(1, 0xff00f7);
-
-            pixels.setBrightness(200);
-            
-            pixels.show();
-
-            Serial.println("Changement de Couleur : ");
-            Serial.println(inputString);
-
-        } else if(inputString == "bleu") {
-
-            pixels.setPixelColor(0, 0x0023ff);
-            pixels.setPixelColor(1, 0x0023ff);
-            
-            pixels.show();
-
-            Serial.println("Changement de Couleur : ");
-            Serial.println(inputString);  
-
-        } else if(inputString == "blanc") {
-
-            fullWhite();
-
-            Serial.println("Changement de Couleur : ");
-            Serial.println(inputString);
-
-        } else if(inputString == "jaune") {
-            
-            pixels.setPixelColor(0, 0xffff00);
-            pixels.setPixelColor(1, 0xffff00);
-            
-            pixels.show();
-
-            Serial.println("Changement de Couleur : ");
-            Serial.println(inputString);
-
-        } else if(inputString == "orange") {
-
-            pixels.setPixelColor(0, 0xffaa00);
-            pixels.setPixelColor(1, 0xffaa00);
-            
-            pixels.show();           
-
-            Serial.println("Changement de Couleur : ");
-            Serial.println(inputString);
-
-        } else if(inputString == "rouge") {
-
-            pixels.setPixelColor(0, 0xff0000);
-            pixels.setPixelColor(1, 0xff0000);
-            
-            pixels.show();           
-
-            Serial.println("Changement de Couleur : ");
-            Serial.println(inputString);
-
-        }else{
-                    
-            long rvb_led = strtol(inputString.c_str(), NULL, 16);
-
-            pixels.setPixelColor(0, rvb_led); // 
-            pixels.setPixelColor(1, rvb_led); //
-
-            pixels.show();
-
-            Serial.println("Changement de Couleur : ");
-            Serial.println(inputString);
-        }*/
-
     }
 
     delay(delayval);
@@ -263,9 +201,85 @@ void fullWhite() {
     pixels.show();
 }
 
+void fullWhiteMotors() {
+    for(uint16_t i=0; i<pixelsMotor.numPixels(); i++) {
+        pixelsMotor.setPixelColor(i, pixelsMotor.Color(255, 255, 255 ));
+    }
+    pixelsMotor.show();
+}
+
 void fullColor() {
     for(uint16_t i=0; i<pixels.numPixels(); i++) {
         pixels.setPixelColor(i, pixels.Color(255, 255, 255 ));
     }
     pixels.show();
+}
+
+/* 
+    Effet Kit K2000
+*/
+// Cycles - one cycle is scanning through all pixels left then right (or right then left)
+// Speed - how fast one cycle is (32 with 16 pixels is default KnightRider speed)
+// Width - how wide the trail effect is on the fading out LEDs.  The original display used
+//         light bulbs, so they have a persistance when turning off.  This creates a trail.
+//         Effective range is 2 - 8, 4 is default for 16 pixels.  Play with this.
+// Color - 32-bit packed RGB color value.  All pixels will be this color.
+// knightRider(cycles, speed, width, color);
+void knightRider(uint16_t cycles, uint16_t speed, uint8_t width, uint32_t color) {
+    uint32_t old_val[NUMPIXELS_MOTOR]; // up to 256 lights!
+    // Larson time baby!
+    for(int i = 0; i < cycles; i++){
+        for (int count = 1; count<NUMPIXELS_MOTOR; count++) {
+            pixelsMotor.setPixelColor(count, color);
+            old_val[count] = color;
+            for(int x = count; x>0; x--) {
+                old_val[x-1] = dimColor(old_val[x-1], width);
+                pixelsMotor.setPixelColor(x-1, old_val[x-1]); 
+            }
+            pixelsMotor.show();
+            delay(speed);
+        }
+        for (int count = NUMPIXELS_MOTOR-1; count>=0; count--) {
+            pixelsMotor.setPixelColor(count, color);
+            old_val[count] = color;
+            for(int x = count; x<=NUMPIXELS_MOTOR ;x++) {
+                old_val[x-1] = dimColor(old_val[x-1], width);
+                pixelsMotor.setPixelColor(x+1, old_val[x+1]);
+            }
+            pixelsMotor.show();
+            delay(speed);
+        }
+    }
+}
+
+void clearStrip() {
+    for( int i = 0; i<NUMPIXELS_MOTOR; i++){
+        pixelsMotor.setPixelColor(i, 0x000000); strip.show();
+    }
+}
+
+uint32_t dimColor(uint32_t color, uint8_t width) {
+   return (((color&0xFF0000)/width)&0xFF0000) + (((color&0x00FF00)/width)&0x00FF00) + (((color&0x0000FF)/width)&0x0000FF);
+}
+
+// Using a counter and for() loop, input a value 0 to 251 to get a color value.
+// The colors transition like: red - org - ylw - grn - cyn - blue - vio - mag - back to red.
+// Entering 255 will give you white, if you need it.
+uint32_t colorWheel(byte WheelPos) {
+    byte state = WheelPos / 21;
+    switch(state) {
+        case 0: return pixelsMotor.Color(255, 0, 255 - ((((WheelPos % 21) + 1) * 6) + 127)); break;
+        case 1: return pixelsMotor.Color(255, ((WheelPos % 21) + 1) * 6, 0); break;
+        case 2: return pixelsMotor.Color(255, (((WheelPos % 21) + 1) * 6) + 127, 0); break;
+        case 3: return pixelsMotor.Color(255 - (((WheelPos % 21) + 1) * 6), 255, 0); break;
+        case 4: return pixelsMotor.Color(255 - (((WheelPos % 21) + 1) * 6) + 127, 255, 0); break;
+        case 5: return pixelsMotor.Color(0, 255, ((WheelPos % 21) + 1) * 6); break;
+        case 6: return pixelsMotor.Color(0, 255, (((WheelPos % 21) + 1) * 6) + 127); break;
+        case 7: return pixelsMotor.Color(0, 255 - (((WheelPos % 21) + 1) * 6), 255); break;
+        case 8: return pixelsMotor.Color(0, 255 - ((((WheelPos % 21) + 1) * 6) + 127), 255); break;
+        case 9: return pixelsMotor.Color(((WheelPos % 21) + 1) * 6, 0, 255); break;
+        case 10: return pixelsMotor.Color((((WheelPos % 21) + 1) * 6) + 127, 0, 255); break;
+        case 11: return pixelsMotor.Color(255, 0, 255 - (((WheelPos % 21) + 1) * 6)); break;
+        default: return pixelsMotor.Color(0, 0, 0); break;
+    }
 }

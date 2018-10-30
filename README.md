@@ -1,7 +1,7 @@
 # Faucon Millenium Lego Led Board Bluetooth
 Gestion d'éclairage pour le Faucon millenium lego
 
-![Version](https://img.shields.io/badge/version-v0.1-orange.svg)
+![Version](https://img.shields.io/badge/version-v0.2-orange.svg)
 
 > WIP
 
@@ -22,7 +22,15 @@ Ce code est a l'etat de proof.
 
 ## Le materiel utilisés
 
-- Arduino
+- Arduino UNO
 - Led NeoPixels
-- Pile 18xxx
-- ...
+- Module bluetooth HC-05
+- Condensateur 1000u 16V
+- Resistances 470 Ohm
+- Pile 18650 2000mah ( pas encore testé la version a pile )
+- Shield de protection pour la pile
+- Une plaque de test
+- Des cables
+- De quoi souder :)
+
+Les liens et schémas de montage viendront ensuite.
