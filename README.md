@@ -24,8 +24,8 @@ Ce code est a l'etat de proof mais fonctionne correctement.
 
 J'ai mis des liens vers le site aliexpress, mais bien entendu, vous pouvez acheter toutes ces références sur d'autre site.
 
-- Arduino UNO
-  -(https://www.aliexpress.com/item/Special-promotions-UNO-R3-MEGA328P-ATMEGA16U2-FOR-ARDUINO-Good-Quality-USB-Cable-in-stock-Hight/656716518.html)
+- Arduino UNO 
+  - https://www.aliexpress.com/item/Special-promotions-UNO-R3-MEGA328P-ATMEGA16U2-FOR-ARDUINO-Good-Quality-USB-Cable-in-stock-Hight/656716518.html)
 - Led NeoPixels 
   - ( RGBNW : https://www.aliexpress.com/item/10-1000pcs-SK6812-Similar-to-WS2812B-RGBW-Addressable-LED-Pixel-Chips-Matrix-on-Heat-Sink-PCB/32811057113.html )
 
@@ -35,8 +35,8 @@ il faut mettre NEO_GRBW + NEO_KHZ800 et utiliser des couleurs en RGBW... ( sans 
 - Module bluetooth HC-06 
   - (https://www.aliexpress.com/item/HC-06-Bluetooth-Serial-Pass-through-Module-Wireless-Serial-Communication-HC06-Bluetooth-Module-for-arduino-Diy/32857133517.html)
 - Condensateur 1000uf 16V
-- Resistances 470 Ohm 
-  -(https://www.aliexpress.com/item/Best-Promotion-1000-Pcs-50-Values-1-4W-Metal-Film-Resistors-Resistance-Assortment-Kit-Set-1/32662610149.html)
+- Resistances 470 Ohm
+  - (https://www.aliexpress.com/item/Best-Promotion-1000-Pcs-50-Values-1-4W-Metal-Film-Resistors-Resistance-Assortment-Kit-Set-1/32662610149.html)
 - Pile 18650 2000mah
   -  (https://www.aliexpress.com/item/LiitoKala-for-HG2-18650-18650-3000mah-electronic-cigarette-Rechargeable-batteries-power-high-discharge-power-bank-flashlight/32852288308.html)
 - Shield de protection pour la pile 
