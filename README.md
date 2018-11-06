@@ -18,7 +18,11 @@ Gestion d'éclairage pour le Faucon millenium lego
 
 Ce code permet de piloter un arduino en bluetooth depuis une app android pour modifier l'éclairage du Faucon Millenium Lego.
 
-Ce code est a l'etat de proof mais fonctionne correctement.
+Ce code est a l'etat de proof mais fonctionne correctement avec quelques modes.
+
+## Photos du montage a l'etat de proof et de l'application Android
+
+https://photos.app.goo.gl/6mhLmhqXX3XbEYuD9
 
 ## Les composants utilisés
 
@@ -49,16 +53,65 @@ il faut mettre NEO_GRBW + NEO_KHZ800 et utiliser des couleurs en RGBW... ( sans 
 
 ## PCB
 
-Je viens de mettre au propre une version de la PCB, 
+Version de la PCB, ( je ne l'ai pas encore faite produire pour tester )
 
 ![pcbx25](http://img.viky.fr/PCB_Led-board-controleur_20181106155842.png)
-- zoom x2.5
+zoom x2.5
 
 - 43mm x 28mm sur 2 couches.
 
 Vous pouvez utiliser la PCB ici si vous desirez la modifier ou vous l'imprimer : 
 
 https://easyeda.com/aigleblanc/arduino-lego-lepin-led-controleur
+
+## Montage
+
+Vous pouvez regarder les différentes photos pour le montage, mais sinon en résumé : 
+
+### Etape 1 - Pile et Shield 
+
+On place la pile dans le shield v3 que l'on branche sur un chargeur de telephone quelques temps pour recharger la pile.
+
+### Etape 2 - Montage des Leds
+
+- On soude les leds en ruban, j'ai fais le choix d'en utiliser 14, 2 x 7, espacées de 2cm entre chaque, et de 2.5cm au centre pour le passage dans le support lego
+- J'ai demonté le support centrale de la grille pour laisser un espace en modifiant avec deux trois pieces lego.
+- J'ai passé le fils pour le cockpit dans le bras centrale et en le passant par dessous, a l'intérieur c'est deux leds montées en ruban.
+
+### Etape 3 - Montage de l'arduino
+
+- J'ai raccordé la sortie signal 10 (Pour les moteurs) et 11 ( pour le cockpit ) aux resistances 470 Ohm et ensuite raccordé le signal du ruban de led de l'autre coté de la led. 
+
+Signal Arduino 11 ----> Resistance 470 Ohm ----> Signal Ruban de Leds Moteurs
+
+Signal Arduino 10 ----> Resistance 470 Ohm ----> Signal Ruban de Leds Cockpit
+
+- J'ai raccordé le + 5v et le - de l'arduino sur la plaque de test, mis un condensateur et relié le + et - des leds et le + et - du module bluetooth
+
+Pile ----> Condensateur ----> Leds 
+                        ----> module BT
+
+( Voir le schema de la PCB pour mieux comprendre et les photos )
+
+### Etape 4 - Chargement du programme Arduino et Android
+
+- Installation de l'application Android ( je vous passe le developpement de celle-ci ! )
+- Envoie du programme leds.ino sur la L'arduino UNO ( je pense passer a pluun arduino plus petit ensuite )
+
+### Etape 5 - Test
+
+- Alumage de l'arduino, les leds doivent etre toutes bleu lors de l'allumage.
+- Lancement de l'app Andoird, connection au BT, surrement nommé HC-05.
+- Have Fun !
+
+### Etape 6 - Ce qu'il reste a faire
+
+- Je pense utiliser un arduino plus petit, utiliser une PCB imprimée, voir pourquoi pas, directement integrer le processeur de l'arduino sur la PCB.
+- Imprimer un boitier pour la Pile et le Shiled
+- Imprimer un boitier pour l'Arduino et la Board
+- Optimiser avec des fiches simples la connexion entre les rubans de Leds et la Board.
+- Compiler l'applicaton pour iPhone et voir si ca marche... 
+- Mettre tout ca a disposition.
 
 ## Application Android
 
