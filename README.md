@@ -89,9 +89,10 @@ Signal Arduino 10 ----> Resistance 470 Ohm ----> Signal Ruban de Leds Cockpit
 - J'ai raccordé le + 5v et le - de l'arduino sur la plaque de test, mis un condensateur et relié le + et - des leds et le + et - du module bluetooth
 
 Pile ----> Condensateur ----> Leds 
+
                         ----> module BT
 
-( Voir le schema de la PCB pour mieux comprendre et les photos )
+( Voir le schema de la PCB et les photos pour mieux comprendre )
 
 ### Etape 4 - Chargement du programme Arduino et Android
 
@@ -107,11 +108,19 @@ Pile ----> Condensateur ----> Leds
 ### Etape 6 - Ce qu'il reste a faire
 
 - Je pense utiliser un arduino plus petit, utiliser une PCB imprimée, voir pourquoi pas, directement integrer le processeur de l'arduino sur la PCB.
-- Imprimer un boitier pour la Pile et le Shiled
-- Imprimer un boitier pour l'Arduino et la Board
 - Optimiser avec des fiches simples la connexion entre les rubans de Leds et la Board.
 - Compiler l'applicaton pour iPhone et voir si ca marche... 
 - Mettre tout ca a disposition.
+
+## Impression 3D
+
+### Boitier pour le Shield v3
+
+https://www.thingiverse.com/thing:2839419
+
+### Boitier pour l'arduino UNO
+
+https://www.thingiverse.com/thing:994827
 
 ## Application Android
 
