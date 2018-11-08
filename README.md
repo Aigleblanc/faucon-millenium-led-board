@@ -56,11 +56,10 @@ il faut mettre NEO_GRBW + NEO_KHZ800 et utiliser des couleurs en RGBW... ( sans 
 Version de la PCB, ( je ne l'ai pas encore faite produire pour tester )
 
 ![pcbx25](http://img.viky.fr/PCB_Led-board-controleur.png)
-zoom x2.5
 
-- 43mm x 28mm sur 2 couches.
+- V0.9 : Cette version permet de clipser direction la PCB sur l'arduino UNO !
 
-Vous pouvez utiliser la PCB ici si vous desirez la modifier ou vous l'imprimer : 
+Vous pouvez voir et modifier la PCB ici si vous desirez la modifier ou vous l'imprimer : 
 
 https://easyeda.com/aigleblanc/arduino-lego-lepin-led-controleur
 
