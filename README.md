@@ -55,7 +55,7 @@ il faut mettre NEO_GRBW + NEO_KHZ800 et utiliser des couleurs en RGBW... ( sans 
 
 Version de la PCB, ( je ne l'ai pas encore faite produire pour tester )
 
-![pcbx25](http://img.viky.fr/PCB_Led-board-controleur_20181106155842.png)
+![pcbx25](http://img.viky.fr/PCB_Led-board-controleur.png)
 zoom x2.5
 
 - 43mm x 28mm sur 2 couches.
