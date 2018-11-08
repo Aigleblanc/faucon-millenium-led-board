@@ -82,15 +82,19 @@ On place la pile dans le shield v3 que l'on branche sur un chargeur de telephone
 
 - J'ai raccordé la sortie signal 10 (Pour les moteurs) et 11 ( pour le cockpit ) aux resistances 470 Ohm et ensuite raccordé le signal du ruban de led de l'autre coté de la led. 
 
+```
 Signal Arduino 11 ----> Resistance 470 Ohm ----> Signal Ruban de Leds Moteurs
 
 Signal Arduino 10 ----> Resistance 470 Ohm ----> Signal Ruban de Leds Cockpit
+```
 
 - J'ai raccordé le + 5v et le - de l'arduino sur la plaque de test, mis un condensateur et relié le + et - des leds et le + et - du module bluetooth
 
+```
 Pile ----> Condensateur ----> Leds 
 
                         ----> module BT
+```
 
 ( Voir le schema de la PCB et les photos pour mieux comprendre )
 
