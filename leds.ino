@@ -129,8 +129,8 @@ Action :
 1 - Change la couleur de toutes les leds des moteurs
 2 - Met en blanc toutes les leds du cockpite
 3 - Met en blanc toutes les leds des moteurs
-4 - 
-5 - 
+4 - bleu a bleu
+5 - K2000 - effet bleu
 6 - Effet K2000 sur les moteurs
 7 - Effet K2000 sur les moteurs
 8 - Effet K2000 sur les moteurs
@@ -139,7 +139,10 @@ Action :
 a - Luminosité 10%
 b - Luminosité 50%
 c - Luminosité 100%
-d - 
+d - Led On
+e - Led Off
+
+
 
 z - 
 
@@ -312,6 +315,30 @@ void bt_reception() {
 
             pixelsSalle2.show();
 
+        }
+
+        if (action == "f") {
+            long r_led = strtol(inputString.substring(2,5).c_str(), NULL, 16);
+            long v_led = strtol(inputString.substring(5,8).c_str(), NULL, 16);
+            long b_led = strtol(inputString.substring(8,11).c_str(), NULL, 16);       
+            long w_led = strtol(inputString.substring(11).c_str(), NULL, 16);
+
+            pixelsSalle1.setPixelColor(0, pixels.Color(r_led, v_led, b_led, w_led));
+            pixelsSalle1.setPixelColor(1, pixels.Color(r_led, v_led, b_led, w_led));
+           
+            pixelsSalle1.show();
+        }
+
+        if (action == "g") {
+            long r_led = strtol(inputString.substring(2,5).c_str(), NULL, 16);
+            long v_led = strtol(inputString.substring(5,8).c_str(), NULL, 16);
+            long b_led = strtol(inputString.substring(8,11).c_str(), NULL, 16);       
+            long w_led = strtol(inputString.substring(11).c_str(), NULL, 16);
+
+            pixelsSalle2.setPixelColor(0, pixels.Color(r_led, v_led, b_led, w_led));
+            pixelsSalle2.setPixelColor(1, pixels.Color(r_led, v_led, b_led, w_led));
+           
+            pixelsSalle2.show();
         }
     }
 
