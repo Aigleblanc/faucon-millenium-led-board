@@ -130,3 +130,12 @@ https://www.thingiverse.com/thing:994827
 Vous pouvez utiliser cette aplication pour gérer depuis un telephone Android.
 
 https://github.com/Aigleblanc/faucon-millenium-led-board/blob/master/AppAndroid/faucon.apk
+
+## ChangeLog
+
+```
+2018-11-12 
+
+- Ajout de la gestion de 2 pin de gestion de leds simples.
+
+```

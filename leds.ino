@@ -5,6 +5,8 @@
     #include <avr/power.h>
 #endif
 
+/* LED NEOMATRIX */
+
 #define PIN                    11
 #define NUMPIXELS              2
 
@@ -22,9 +24,17 @@ Adafruit_NeoPixel pixelsMotor   = Adafruit_NeoPixel(NUMPIXELS_MOTOR, PIN_MOTOR, 
 Adafruit_NeoPixel pixelsSalle1  = Adafruit_NeoPixel(NUMPIXELS_SALLE_1, PIN_SALLE_1, NEO_GRBW + NEO_KHZ800);
 Adafruit_NeoPixel pixelsSalle2  = Adafruit_NeoPixel(NUMPIXELS_SALLE_2, PIN_SALLE_2, NEO_GRBW + NEO_KHZ800);
 
+/* Led SIMPLE ROUGE LEGO */
+
+const int L1 = 6;
+const int L2 = 7;
+
 int delayval = 500;
 
 void setup() {
+
+    pinMode(L1, OUTPUT); //L1 est une broche de sortie
+    pinMode(L2, OUTPUT); //L2 est une broche de sortie
 
     Serial.begin (9600); 
 
@@ -46,6 +56,8 @@ void setup() {
     pixelsSalle2.begin();   
 
     led_display();
+    led_exterieur();
+    led_canon();
 }
 
 void loop() {  
@@ -112,7 +124,26 @@ void led_display() {
 
     //===================
 
+    led_exterieur('on');
+    led_canon('on');
+
     delay(delayval);
+}
+
+void led_exterieur(position) {
+    if(position == 'on') {
+        digitalWrite(L1, HIGH);
+    } else {
+        digitalWrite(L1, LOW);
+    }
+}
+
+void led_canon(position) {
+     if(position == 'on') {
+        digitalWrite(L2, HIGH);
+    } else {
+        digitalWrite(L2, LOW);
+    }   
 }
 
 /*
@@ -141,8 +172,12 @@ b - Luminosité 50%
 c - Luminosité 100%
 d - Led On
 e - Led Off
-
-
+f - Changement de la couleur des leds Salle 1
+g - Changement de la couleur des leds Salle 2
+h - On Led exterieur
+i - Off Led exterieur
+j - On Led canon
+k - Off Led canon
 
 z - 
 
@@ -315,8 +350,11 @@ void bt_reception() {
 
             pixelsSalle2.show();
 
+            led_exterieur('off');
+            led_canon('off');
         }
 
+        // Changement de la couleur des leds Salle 1
         if (action == "f") {
             long r_led = strtol(inputString.substring(2,5).c_str(), NULL, 16);
             long v_led = strtol(inputString.substring(5,8).c_str(), NULL, 16);
@@ -329,6 +367,7 @@ void bt_reception() {
             pixelsSalle1.show();
         }
 
+        // Changement de la couleur des leds Salle 2
         if (action == "g") {
             long r_led = strtol(inputString.substring(2,5).c_str(), NULL, 16);
             long v_led = strtol(inputString.substring(5,8).c_str(), NULL, 16);
@@ -339,6 +378,26 @@ void bt_reception() {
             pixelsSalle2.setPixelColor(1, pixels.Color(r_led, v_led, b_led, w_led));
            
             pixelsSalle2.show();
+        }
+
+        // On Led exterieur
+        if (action == "h") {
+            led_exterieur('on');
+        }
+
+        // Off Led exterieur
+        if (action == "i") {
+            led_exterieur('off');
+        }
+
+        // On Led canon
+        if (action == "j") {
+            led_canon('on');
+        }
+
+        // Off Led canon
+        if (action == "k") {
+            led_canon('off');
         }
     }
 
