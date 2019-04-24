@@ -7,17 +7,21 @@
 
 /* LED NEOMATRIX */
 
-#define PIN                    11
-#define NUMPIXELS              2
+#define PIN                    11 // Pin Arduino correspondant au fil signale cockpite
+#define NUMPIXELS              2 // Nombre de led a allumer
 
-#define PIN_MOTOR              10
-#define NUMPIXELS_MOTOR        14
+#define PIN_MOTOR              10 // Pin Arduino correspondant au fil signale Moteur
+#define NUMPIXELS_MOTOR        14 // Nombre de led a allumer
 
-#define PIN_SALLE_1            9
-#define NUMPIXELS_SALLE_1      2
+#define PIN_SALLE_1            9 // Pin Arduino correspondant au fil signale
+#define NUMPIXELS_SALLE_1      2 // Nombre de led a allumer
 
-#define PIN_SALLE_2            8
-#define NUMPIXELS_SALLE_2      2
+#define PIN_SALLE_2            7 // Pin Arduino correspondant au fil signale ((inactive, repris pour le relais))
+#define NUMPIXELS_SALLE_2      2 // Nombre de led a allumer
+
+/* Relai 5V */
+
+#define PIN_RELAY              8 // Pin arduino pour connecter le relais de led
 
 Adafruit_NeoPixel pixels        = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRBW + NEO_KHZ800);
 Adafruit_NeoPixel pixelsMotor   = Adafruit_NeoPixel(NUMPIXELS_MOTOR, PIN_MOTOR, NEO_GRBW + NEO_KHZ800);
@@ -26,15 +30,12 @@ Adafruit_NeoPixel pixelsSalle2  = Adafruit_NeoPixel(NUMPIXELS_SALLE_2, PIN_SALLE
 
 /* Led SIMPLE ROUGE LEGO */
 
-const int L1 = 6;
-const int L2 = 7;
-
 int delayval = 500;
 
 void setup() {
 
-    pinMode(L1, OUTPUT); //L1 est une broche de sortie
-    pinMode(L2, OUTPUT); //L2 est une broche de sortie
+    pinMode(PIN_RELAY, OUTPUT); // definie le pin du relais en mode output.
+    led_exterieur(0); // On passe a off le signal des led exterieur par defaut
 
     Serial.begin (9600); 
 
@@ -53,11 +54,9 @@ void setup() {
     pixelsSalle1.begin();
 
     pixelsSalle2.setBrightness(200);
-    pixelsSalle2.begin();   
+    pixelsSalle2.begin();
 
     led_display();
-    led_exterieur();
-    led_canon();
 }
 
 void loop() {  
@@ -123,27 +122,18 @@ void led_display() {
     pixelsSalle2.show();
 
     //===================
-
-    led_exterieur('on');
-    led_canon('on');
-
     delay(delayval);
 }
 
-void led_exterieur(position) {
-    if(position == 'on') {
-        digitalWrite(L1, HIGH);
-    } else {
-        digitalWrite(L1, LOW);
-    }
-}
+void led_exterieur(int position) {
 
-void led_canon(position) {
-     if(position == 'on') {
-        digitalWrite(L2, HIGH);
+    if(position == 1) {
+        digitalWrite(PIN_RELAY,LOW);
+
     } else {
-        digitalWrite(L2, LOW);
-    }   
+        digitalWrite(PIN_RELAY,HIGH);
+    }
+
 }
 
 /*
@@ -173,11 +163,9 @@ c - Luminosité 100%
 d - Led On
 e - Led Off
 f - Changement de la couleur des leds Salle 1
-g - Changement de la couleur des leds Salle 2
+g - Changement de la couleur des leds Salle 2 ( utilisé pour led exterieurs sur le relai)
 h - On Led exterieur
 i - Off Led exterieur
-j - On Led canon
-k - Off Led canon
 
 z - 
 
@@ -230,6 +218,8 @@ void bt_reception() {
             pixelsMotor.setPixelColor(13, r_led, v_led, b_led, w_led);
 
             pixelsMotor.show();
+
+            Serial.write("Leds Moteur changées.");
         }
 
         // Met en blanc toutes les leds du cockpite
@@ -350,8 +340,7 @@ void bt_reception() {
 
             pixelsSalle2.show();
 
-            led_exterieur('off');
-            led_canon('off');
+            led_exterieur(0);
         }
 
         // Changement de la couleur des leds Salle 1
@@ -382,22 +371,12 @@ void bt_reception() {
 
         // On Led exterieur
         if (action == "h") {
-            led_exterieur('on');
+            led_exterieur(1);
         }
 
         // Off Led exterieur
         if (action == "i") {
-            led_exterieur('off');
-        }
-
-        // On Led canon
-        if (action == "j") {
-            led_canon('on');
-        }
-
-        // Off Led canon
-        if (action == "k") {
-            led_canon('off');
+            led_exterieur(0);
         }
     }
 
