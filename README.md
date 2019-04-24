@@ -36,7 +36,7 @@ J'ai mis des liens vers le site aliexpress, mais bien entendu, vous pouvez achet
 Particularité avec cette version des leds, c'est la declaration dans la lib adafruit : Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRBW + NEO_KHZ800);
 il faut mettre NEO_GRBW + NEO_KHZ800 et utiliser des couleurs en RGBW... ( sans doute une petite subtilité dans la copie des leds )
 
-- Module bluetooth HC-06 
+- Module bluetooth HC-06
   - (https://www.aliexpress.com/item/HC-06-Bluetooth-Serial-Pass-through-Module-Wireless-Serial-Communication-HC06-Bluetooth-Module-for-arduino-Diy/32857133517.html)
 - Condensateur 1000uf 16V
 - Resistances 470 Ohm
@@ -53,11 +53,9 @@ il faut mettre NEO_GRBW + NEO_KHZ800 et utiliser des couleurs en RGBW... ( sans 
 
 ## PCB
 
-Version de la PCB, ( je ne l'ai pas encore faite produire pour tester )
+Version de la PCB 9.0 produite et testé, je viens de modifier pour une version ammélioré.
 
-![pcbx25](http://img.viky.fr/PCB_Led-board-controleur.png)
-
-- V0.9 : Cette version permet de clipser direction la PCB sur l'arduino UNO !
+- V0.9.2 : Cette version permet de clipser la PCB sur l'arduino UNO, avec l'ajout de deux pin 2 ports et la correction de text sur la PCB !
 
 Vous pouvez voir et modifier la PCB ici si vous desirez la modifier ou vous l'imprimer : 
 
@@ -82,12 +80,15 @@ On place la pile dans le shield v3 que l'on branche sur un chargeur de telephone
 - J'ai raccordé la sortie signal 10 (Pour les moteurs) et 11 ( pour le cockpit ) aux resistances 470 Ohm et ensuite raccordé le signal du ruban de led de l'autre coté de la led. 
 
 ```
-Signal Arduino 11 ----> Resistance 470 Ohm ----> Signal Ruban de Leds Moteurs
+Signal Arduino 10 ----> Resistance 470 Ohm ----> Signal Ruban de Leds Moteurs
 
-Signal Arduino 10 ----> Resistance 470 Ohm ----> Signal Ruban de Leds Cockpit
+Signal Arduino 11 ----> Resistance 470 Ohm ----> Signal Ruban de Leds Cockpit
+
+Signal Arduino 8 ----> Resistance 470 Ohm ----> Signal vers un relais 5v
+
 ```
 
-- J'ai raccordé le + 5v et le - de l'arduino sur la plaque de test, mis un condensateur et relié le + et - des leds et le + et - du module bluetooth
+- J'ai raccordé le + 5v et le - de l'arduino sur la plaque de test, mis un condensateur et relié le + et - des leds et le + et - du module bluetooth et le + et le - vers le relais.
 
 ```
 Pile ----> Condensateur ----> Leds 
@@ -100,7 +101,7 @@ Pile ----> Condensateur ----> Leds
 ### Etape 4 - Chargement du programme Arduino et Android
 
 - Installation de l'application Android ( je vous passe le developpement de celle-ci ! )
-- Envoie du programme leds.ino sur la L'arduino UNO ( je pense passer a pluun arduino plus petit ensuite )
+- Envoie du programme leds.ino sur la L'arduino UNO.
 
 ### Etape 5 - Test
 
@@ -110,8 +111,7 @@ Pile ----> Condensateur ----> Leds
 
 ### Etape 6 - Ce qu'il reste a faire
 
-- Je pense utiliser un arduino plus petit, utiliser une PCB imprimée, voir pourquoi pas, directement integrer le processeur de l'arduino sur la PCB.
-- Optimiser avec des fiches simples la connexion entre les rubans de Leds et la Board.
+- Le principal a été fait, la PCB est fonctionnel, les fiches sont pratique, Reste a modifier l'appli pour la rendre plus modulable.
 - Compiler l'applicaton pour iPhone et voir si ca marche... 
 - Mettre tout ca a disposition.
 
@@ -134,6 +134,11 @@ https://github.com/Aigleblanc/faucon-millenium-led-board/blob/master/AppAndroid/
 ## ChangeLog
 
 ```
+2019-04-24
+
+- Correction de la PCB ( principalement du texte et j'ai bougé de 3mm les fiches)
+- Modification de l'application pour utiliser un relais sur le pin 8 (Ext)
+
 2018-11-12 
 
 - Ajout de la gestion de 2 pin de gestion de leds simples.
